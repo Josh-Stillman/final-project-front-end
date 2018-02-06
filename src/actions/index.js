@@ -12,3 +12,7 @@ export const fetch_transactions = () => {
     })
   }
 }
+
+export const sort_transactions = (clickedColumn) => {
+  return {type: "SORT_TRANSACTIONS", clickedColumn}
+}
