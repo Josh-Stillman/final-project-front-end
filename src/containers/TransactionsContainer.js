@@ -62,7 +62,7 @@ class TransactionsContainer extends React.Component {
             <Table.HeaderCell sorted={this.props.column === 'total_dem' ? this.props.direction : null} onClick={() => this.props.sort_transactions('total_dem')}>Total Democrat</Table.HeaderCell>
             <Table.HeaderCell sorted={this.props.column === 'total_rep' ? this.props.direction : null} onClick={() => this.props.sort_transactions('total_rep')}>Total Republican</Table.HeaderCell>
             <Table.HeaderCell sorted={this.props.column === 'total_dem_pct' ? this.props.direction : null} onClick={() => this.props.sort_transactions('total_dem_pct')}>Percent Democrat</Table.HeaderCell>
-            <Table.HeaderCell sorted={this.props.column === 'total_rep_pct' ? this.state.direction : null} onClick={() => this.props.sort_transactions('total_rep_pct')}>Percent Republican</Table.HeaderCell>
+            <Table.HeaderCell sorted={this.props.column === 'total_rep_pct' ? this.props.direction : null} onClick={() => this.props.sort_transactions('total_rep_pct')}>Percent Republican</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 

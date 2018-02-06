@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import  TransactionReducer from './TransactionReducer'
+import  BusinessReducer from './BusinessReducer'
 
 const rootReducer = combineReducers({
-  transactions: TransactionReducer
-  //comments: commentsReducer
+  transactions: TransactionReducer,
+  businesses: BusinessReducer
 })
 
 export default rootReducer
