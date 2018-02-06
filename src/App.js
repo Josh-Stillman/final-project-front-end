@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import NavBar from './NavBar'
 import TransactionsContainer from './containers/TransactionsContainer'
 import BusinessesContainer from './containers/BusinessesContainer'
+import HomePage from './HomePage'
+import Analytics from './Analytics'
 import { Container} from 'semantic-ui-react'
 import * as actions from './actions'
 import { connect } from 'react-redux'
@@ -22,10 +24,11 @@ class App extends Component {
       <Router>
         <div>
         <NavBar />
-        <Container>
-        <Route exact path="/" render={() => (<p>Hello World!</p>)} />
+        <Container >
+        <Route exact path="/" component={HomePage} />
         <Route path="/transactions" component={TransactionsContainer} />
         <Route path="/businesses" component={BusinessesContainer} />
+        <Route path="/analytics" component={Analytics} />
         </Container>
         </div>
       </Router>

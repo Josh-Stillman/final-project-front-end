@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
+import { Menu } from 'semantic-ui-react'
 
 const NavBar = (props) => {
 
   return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/transactions">Transaction</NavLink>
-      <NavLink to="/businesses">Businesses</NavLink>
-      <NavLink to="/analytics">Analytics</NavLink>
-    </div>
+    <Menu secondary>
+      <Menu.Item as={NavLink} exact to="/" name="Home" />
+      <Menu.Item as={NavLink} to="/transactions" name="Transaction" />
+      <Menu.Item as={NavLink} to="/businesses" name="Businesses" />
+      <Menu.Item as={NavLink} to="/analytics" name="Analytics" />
+    </Menu>
   )
 
 
