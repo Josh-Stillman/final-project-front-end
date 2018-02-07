@@ -16,6 +16,7 @@ class App extends Component {
   componentDidMount(){
     this.props.fetch_transactions()
     this.props.fetch_businesses()
+    this.props.fetch_user_data(1)
     console.log("app mounting", this.props);
   }
 

@@ -7,8 +7,16 @@ import * as helpers from './Helpers'
 class HomePage extends React.Component {
 
   //formatting from other pages.
+  constructor() {
+    super()
+    this.state = {
+      loading: false
+    }
+  }
 
-
+  handleClick = () => {
+    this.setState({loading: !this.state.loading})
+  }
 
 
   getNums = () => {
@@ -49,15 +57,16 @@ class HomePage extends React.Component {
 //   }
 
 render(){
+  console.log("user props", this.props.user);
 
   let myNums = this.getNums()
   return (
     <React.Fragment >
       <Container>
       <Segment vertical padded >
-    <Header as='h1' textAlign="center" style={{fontSize: 80}} >
+    <Header as='h1' textAlign="center" style={{fontSize: 70, fontFamily: "Inconsolata, monospace"}} >
       <Header.Content>
-        <i>Follow  <span>&#8594;</span>  your  <span>&#8594;</span>  $</i>
+        Follow  <span>&#8594;</span>  your  <span>&#8594;</span>  $
       </Header.Content>
     </Header>
   </Segment>
@@ -71,7 +80,7 @@ render(){
     </Header>
 
     <Header as='h1' attached>
-      <Icon name='mastercard' />
+      <Icon name='money' />
       <Header.Content as="h2">
         They've given {myNums.totalRepSpending} to Republicans (2016-2018 cycles).
       </Header.Content>
@@ -80,40 +89,39 @@ render(){
     <br/>
 
     <Header as="h1" block attached="top">
-      <Icon name='credit card alternative' size="massive" />
+      <Icon name='amex' size="massive" />
       <Header.Content as='h2'>
         You've spent {myNums.yourDemSpending} at Democrat-leaning businesses.
       </Header.Content>
     </Header>
     <Header as="h1" attached>
-      <Icon name='american express' size="massive" />
+      <Icon name='money' size="massive" />
       <Header.Content as='h2'>
         They've given {myNums.totalDemSpending} to Democrats (2016-2018 cycles).
       </Header.Content>
     </Header>
     </Segment>
 
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment padded="very" vertical>
     <Grid container stackable verticalAlign='middle'>
       <Grid.Row>
         <Grid.Column width={8}>
-          <Header as='h3' style={{ fontSize: '2em' }}>We Help Companies and Companions</Header>
+          <Header as='h3' style={{ fontSize: '2em' }}>Hello, {this.props.user.name}. You've analyzed {this.props.user.months_analyzed} months of transactions.</Header>
           <p style={{ fontSize: '1.33em' }}>
-            We can give your company superpowers to do things that they never thought possible. Let us delight
-            your customers and empower your needs... through pure data analytics.
+            That's {this.props.user.total_analyzed_transactions} total analyzed transactions. We found campaign finance data for {this.props.user.number_matched_transactions} of those transactions ({helpers.pctFormatter(parseFloat(this.props.user.percent_matched))}) at {this.props.user.business_count} businesses.
           </p>
-          <Header as='h3' style={{ fontSize: '2em' }}>We Make Bananas That Can Dance</Header>
+          <Header as='h3' style={{ fontSize: '2em' }}>Analyze More Transactions!</Header>
           <p style={{ fontSize: '1.33em' }}>
-            Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.
+            There are still {this.props.user.remaining_months_to_analyze} months of loaded data to analyze.  The next month to analyze is {this.props.user.next_month_to_analyze}.
           </p>
         </Grid.Column>
         <Grid.Column floated='right' width={6}>
-          <Icon name="flag outline" size="massive"/>
+          <Icon name="credit card alternative" size="massive"/>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
-          <Button size='huge'>Check Them Out</Button>
+          <Button size='massive' loading={this.state.loading} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -208,8 +216,8 @@ const mapStateToProps = (state) =>{
   return {
     businesses: state.businesses.all,
     column: state.businesses.column,
-    direction: state.businesses.direction
-
+    direction: state.businesses.direction,
+    user: state.user.info
   }
 }
 
