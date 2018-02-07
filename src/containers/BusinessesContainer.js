@@ -1,6 +1,6 @@
 import React from 'react'
 import Business from '../components/Business'
-import { Table, Header, Icon } from 'semantic-ui-react'
+import { Table, Header, Icon, Segment, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
@@ -15,12 +15,16 @@ class BusinessesContainer extends React.Component {
 
     return (
       <React.Fragment >
+      <Container>
+      <Segment padded vertical>
       <Header as='h2'>
         <Icon name='dollar' />
         <Header.Content>
+          <Icon name="building outline"/>
           Business Data
         </Header.Content>
       </Header>
+      </Segment>
       <Table celled selectable striped sortable>
         <Table.Header>
           <Table.Row>
@@ -41,6 +45,7 @@ class BusinessesContainer extends React.Component {
           {this.props.businesses.map(business => <Business business={business} />)}
         </Table.Body>
         </Table>
+      </Container>
         </React.Fragment>
         )
   }

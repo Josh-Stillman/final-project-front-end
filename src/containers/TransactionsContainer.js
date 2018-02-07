@@ -1,6 +1,6 @@
 import React from 'react'
 import Transaction from '../components/Transaction'
-import { Table, Header, Icon } from 'semantic-ui-react'
+import { Table, Header, Icon, Segment, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
@@ -42,12 +42,16 @@ class TransactionsContainer extends React.Component {
 
     return (
       <React.Fragment >
+      <Container>
+      <Segment padded vertical>
       <Header as='h2'>
         <Icon name='dollar' />
         <Header.Content>
+          <Icon name="credit card alternative"/>
           Your Transactions
         </Header.Content>
       </Header>
+    </Segment>
       <Table celled selectable striped sortable>
         <Table.Header>
           <Table.Row>
@@ -70,7 +74,9 @@ class TransactionsContainer extends React.Component {
           {this.props.transactions.map(transaction => <Transaction transaction={transaction} />)}
         </Table.Body>
         </Table>
+        </Container>
         </React.Fragment>
+
         )
   }
 }
