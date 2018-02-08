@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import NavBar from './NavBar'
 import TransactionsContainer from './containers/TransactionsContainer'
 import BusinessesContainer from './containers/BusinessesContainer'
@@ -25,10 +25,12 @@ class App extends Component {
       <Router>
         <div>
         <NavBar />
+        <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/transactions" component={TransactionsContainer} />
         <Route path="/businesses" component={BusinessesContainer} />
         <Route path="/analytics" render={() => <Analytics />} />
+        </Switch>
         </div>
       </Router>
     )

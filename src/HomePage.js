@@ -1,8 +1,9 @@
 import React from 'react'
-import { Table, Header, Icon, Grid, Segment, Button, List, Container, Divider } from 'semantic-ui-react'
+import { Table, Header, Icon, Grid, Segment, Button, List, Container, Divider, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import * as helpers from './Helpers'
+import {Link} from 'react-router-dom'
 
 class HomePage extends React.Component {
 
@@ -132,72 +133,114 @@ render(){
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>"What a Company"</Header>
-            <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
+            <Header as='h3' style={{ fontSize: '2em' }}>View your analyzed <Link to="/transactions">Transactions</Link></Header>
+            <Link to="/transactions"><Icon name="grid layout" size="massive" /></Link>
           </Grid.Column>
+
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>"I shouldn't have gone with their competitor."</Header>
+            <Header as='h3' style={{ fontSize: '2em' }}>Learn about the <Link to="/transactions">Businesses</Link> you shop at</Header>
             <p style={{ fontSize: '1.33em' }}>
-              <Icon name="money" size="massive" />
-              <b>Nan</b> Chief Fun Officer Acme Toys
-            </p>
+              <Link to="/transactions"><Icon name="building outline" size="massive" /></Link>
+              </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
 
+    <Segment padded="very" vertical>
+    <Grid container stackable verticalAlign='middle'>
+      <Grid.Row>
+        <Grid.Column width={8}>
+          <Header as='h3' style={{ fontSize: '2em' }}><Link to="/analytics">Visualize </Link>where your money is going</Header>
+          <p style={{ fontSize: '1.33em' }}>
+            See how much a business donates to each party, and how much <i>you've</i> spent there.
+          </p>
+        </Grid.Column>
+        <Grid.Column floated='right' width={8}>
+          <Link to="/analytics"><Icon name="bar graph" size="massive" style={{margin: 50}} /></Link><Link to="/analytics"><Icon name="area graph" size="massive"/><br/></Link>
+          <Link to="/analytics"><Icon name="line graph" size="massive" style={{margin: 50}}/></Link> <Link to="/analytics"><Icon name="pie graph" size="massive"/></Link>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </Segment>
+
+
+
+
+
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>Breaking The Grid, Grabs Your Attention</Header>
+        <Header as='h3' style={{ fontSize: '2em' }}>Our Data Comes from OpenSecrets.org</Header>
         <p style={{ fontSize: '1.33em' }}>
-          Instead of focusing on content creation and hard work, we have learned how to master the art of doing
-          nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic
-          and worth your attention.
+          OpenSecrets.org is the premier online source for tracking money in politics, with extensive data drawn directly from official Federal Election Commission disclosure filings.
         </p>
-        <Button as='a' size='large'>Read More</Button>
+        <p style={{ fontSize: '1.33em' }}>Search OpenSecrets.org's Organizations data <a href="https://www.opensecrets.org/orgs/" target="blank">here.</a>
+        </p>
+        <Grid columns="equal"><Grid.Row><Grid.Column><a href="https://www.opensecrets.org/about"><Image src="https://www.opensecrets.org/assets/logo.svg" size="medium"/></a> </Grid.Column>
+        <Grid.Column verticalAlign="bottom"><Button as='a' href="https://www.opensecrets.org/about/" target="blank" size='large'>Read More</Button></Grid.Column>
+        </Grid.Row>
+        </Grid>
         <Divider
           as='h4'
           className='header'
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Case Studies</a>
+          <span>Campaign Finance 101</span>
         </Divider>
-        <Header as='h3' style={{ fontSize: '2em' }}>Did We Tell You About Our Bananas?</Header>
+        <Header as='h3' style={{ fontSize: '2em' }}>Money Follows Power</Header>
         <p style={{ fontSize: '1.33em' }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but it's really
-          true.
-          It took years of gene splicing and combinatory DNA research, but our bananas can really dance.
+          While some businesses consistently donate along ideological lines, others give to whichever party is in power, or split their donations evenly between Democrats and Republicans.
         </p>
-        <Button as='a' size='large'>I'm Still Quite Interested</Button>
+        <p style={{ fontSize: '1.33em' }}>
+          Learn the basics in OpenSecrets.org's <a href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">"The Top 10 Things Every Voter Should Know About Money-In-Politics"</a>.
+        </p>
+        <Button as='a' size='large' href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Learn The Facts About Campaign Finance In The U.S.</Button>
+        <Divider
+          as='h4'
+          className='header'
+          horizontal
+          style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+        >
+          <span>About the Data</span>
+        </Divider>
+        <Header as='h3' style={{ fontSize: '2em' }}>All Employee Donations Over $200 are Included</Header>
+        <p style={{ fontSize: '1.33em' }}>
+          As OpenSecrets.org explains, <i>"The organizations themselves did not donate, rather the money came from the organizations' PACs (Political Action Committees), their individual members or employees or owners, and those individuals' immediate families. Organization totals may include subsidiaries and affiliates."</i>
+        </p>
+        <p style={{ fontSize: '1.33em' }}>Data for the current election cycle was released by the Federal Election Commission on May 16, 2017.</p>
+        <Button as='a' size='large' href="https://www.opensecrets.org/orgs/methodology.php" target="blank">Learn More About the Data</Button>
       </Container>
     </Segment>
+
+
     </Container>
     <Segment inverted vertical style={{ padding: '5em 0em' }}>
      <Container>
        <Grid divided inverted stackable>
          <Grid.Row>
-           <Grid.Column width={3}>
+           <Grid.Column width={4}>
              <Header inverted as='h4' content='About' />
              <List link inverted>
-               <List.Item as='a'>Sitemap</List.Item>
-               <List.Item as='a'>Contact Us</List.Item>
-               <List.Item as='a'>Religious Ceremonies</List.Item>
-               <List.Item as='a'>Gazebo Plans</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/orgs/methodology.php" target="blank">Organization Data Methodology</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/resources/faq/" target="blank">OpenSecrets.org FAQ</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/about/" target="blank">About OpenSecrets.Org</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/donate/" target="blank">Donate to Opensecrets.org</List.Item>
              </List>
            </Grid.Column>
-           <Grid.Column width={3}>
-             <Header inverted as='h4' content='Services' />
+           <Grid.Column width={5}>
+             <Header inverted as='h4' content='Resources' />
              <List link inverted>
-               <List.Item as='a'>Banana Pre-Order</List.Item>
-               <List.Item as='a'>DNA FAQ</List.Item>
-               <List.Item as='a'>How To Access</List.Item>
-               <List.Item as='a'>Favorite X-Men</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/orgs/" target="blank">Search OpenSecrets.org's Organization Data</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/orgs/list.php?cycle=ALL" target="blank">Top Donors from All Election Cycles</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Learn Campaign Finance Basics</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/donor-lookup" target="blank">Search Individual Donors</List.Item>
+               <List.Item as='a' href="https://www.opensecrets.org/news/" target="blank">Campaign Finance News & Analysis</List.Item>
              </List>
            </Grid.Column>
            <Grid.Column width={7}>
-             <Header as='h4' inverted>Footer Header</Header>
-             <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+             <Header as='h4' inverted>Disclaimer</Header>
+             <p>Federal law prohibits the use of contributor information for the purpose of soliciting contributions or for any commercial purpose.</p>
            </Grid.Column>
          </Grid.Row>
        </Grid>
