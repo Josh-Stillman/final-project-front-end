@@ -1,6 +1,6 @@
 import React from 'react'
 import Business from '../components/Business'
-import { Table, Header, Icon, Segment, Container } from 'semantic-ui-react'
+import { Table, Header, Icon, Segment, Container, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import withAuth from '../hocs/withAuth'
@@ -12,10 +12,8 @@ class BusinessesContainer extends React.Component {
     super()
   }
 
-  render() {
-
+  hasBusinesses = () => {
     return (
-      <React.Fragment >
       <Container>
       <Segment padded vertical>
       <Header as='h2'>
@@ -47,6 +45,25 @@ class BusinessesContainer extends React.Component {
         </Table.Body>
         </Table>
       </Container>
+    )
+  }
+
+  noBusinesses = () => {
+    return (
+      <Container>
+        <Segment padded basic/>
+              <Message warning size="massive">
+            <Message.Header as="h1"><Icon name="building outline"/>No businesses found yet.</Message.Header>
+            <p>Analyze more transactions to find businesses with campaign finance data.</p>
+          </Message>
+    </Container>)
+  }
+
+  render() {
+
+    return (
+      <React.Fragment >
+          {this.props.businesses.length !== 0 ? this.hasBusinesses() : this.noBusinesses()}
         </React.Fragment>
         )
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from './actions';
-import {Container} from 'semantic-ui-react'
+import {Container, Header} from 'semantic-ui-react'
 import withAuth from './hocs/withAuth'
 
 class Login extends React.Component {
@@ -38,6 +38,7 @@ class Login extends React.Component {
     return (
       <div>
       <Container>
+      <Header as="h1">Login</Header>
         {this.state.error ? <h1>Try Again</h1> : null}
         <div className="ui form">
           <form onSubmit={this.handleSubmit}>

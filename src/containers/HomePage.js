@@ -1,9 +1,11 @@
 import React from 'react'
 import { Table, Header, Icon, Grid, Segment, Button, List, Container, Divider, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import * as actions from './actions'
-import * as helpers from './Helpers'
+import * as actions from '../actions'
+import * as helpers from '../Helpers'
 import {Link} from 'react-router-dom'
+import HomePageAnalytics from '../components/HomePageAnalytics'
+import HomePageTransactions from '../components/HomePageTransactions'
 
 class HomePage extends React.Component {
 
@@ -13,6 +15,16 @@ class HomePage extends React.Component {
     this.state = {
       loading: false
     }
+  }
+
+  componentDidMount(){
+    if (!!this.props.user.id) {
+      this.props.fetch_user_data(this.props.user.id)
+      this.props.fetch_transactions(this.props.user.id)
+      this.props.fetch_businesses(this.props.user.id)
+      console.log("hp mounting", !!this.props.user.id);
+    }
+
   }
 
   handleClick = () => {
@@ -47,18 +59,8 @@ class HomePage extends React.Component {
   }
 
 
-
-//   const getNumbers = () =>{
-//     myOrgs.repOrgs = props.businesses.filter(biz => biz.total_rep_pct > .5)
-//     nums.demOrgs = props.businesses.filter(biz => biz.total_dem_pct > .5)
-//     let yourRepSpending = repOrgs.reduce((acc, biz) => acc += biz.user_total_spending)
-// user_total_spending
-//
-// total_dem
-//   }
-
 render(){
-  console.log("user props", this.props.user);
+  console.log("biz data on home page", this.props.businesses);
 
   let myNums = this.getNums()
   return (
@@ -72,61 +74,12 @@ render(){
     </Header>
   </Segment>
 
-    <Segment vertical>
-    <Header as='h1' block attached="top">
-      <Icon name='visa' />
-      <Header.Content as="h2">
-        You've spent {myNums.yourRepSpending} at Republican-leaning businesses.
-      </Header.Content>
-    </Header>
+  {this.props.user.id && this.props.businesses.length !== 0 ? <HomePageAnalytics myNums={myNums} / > : null}
+  {this.props.user.id ? <HomePageTransactions userData={this.props.userData} / > : null}
 
-    <Header as='h1' attached>
-      <Icon name='money' />
-      <Header.Content as="h2">
-        They've given {myNums.totalRepSpending} to Republicans (2016-2018 cycles).
-      </Header.Content>
-    </Header>
 
-    <br/>
 
-    <Header as="h1" block attached="top">
-      <Icon name='amex' size="massive" />
-      <Header.Content as='h2'>
-        You've spent {myNums.yourDemSpending} at Democrat-leaning businesses.
-      </Header.Content>
-    </Header>
-    <Header as="h1" attached>
-      <Icon name='money' size="massive" />
-      <Header.Content as='h2'>
-        They've given {myNums.totalDemSpending} to Democrats (2016-2018 cycles).
-      </Header.Content>
-    </Header>
-    </Segment>
 
-    <Segment padded="very" vertical>
-    <Grid container stackable verticalAlign='middle'>
-      <Grid.Row>
-        <Grid.Column width={8}>
-          <Header as='h3' style={{ fontSize: '2em' }}>Hello, {this.props.user.name}. You've analyzed {this.props.user.months_analyzed} months of transactions.</Header>
-          <p style={{ fontSize: '1.33em' }}>
-            That's {this.props.user.total_analyzed_transactions} total analyzed transactions. We found campaign finance data for {this.props.user.number_matched_transactions} of those transactions ({helpers.pctFormatter(parseFloat(this.props.user.percent_matched))}) at {this.props.user.business_count} businesses.
-          </p>
-          <Header as='h3' style={{ fontSize: '2em' }}>Analyze More Transactions!</Header>
-          <p style={{ fontSize: '1.33em' }}>
-            There are still {this.props.user.remaining_months_to_analyze} months of loaded data to analyze.  The next month to analyze is {this.props.user.next_month_to_analyze}.
-          </p>
-        </Grid.Column>
-        <Grid.Column floated='right' width={6}>
-          <Icon name="credit card alternative" size="massive"/>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column textAlign='center'>
-          <Button size='massive' loading={this.state.loading} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  </Segment>
 
 
     <Segment style={{ padding: '0em' }} vertical>
@@ -260,7 +213,8 @@ const mapStateToProps = (state) =>{
     businesses: state.businesses.all,
     column: state.businesses.column,
     direction: state.businesses.direction,
-    user: state.user.info
+    user: state.auth.currentUser,
+    userData: state.user.info
   }
 }
 

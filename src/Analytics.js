@@ -1,10 +1,11 @@
 import React from 'react'
-import { Table, Header, Icon, Button, Container } from 'semantic-ui-react'
+import { Table, Header, Icon, Button, Container, Segment, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import * as helpers from './Helpers'
 import { VictoryVoronoiContainer, VictoryChart, VictoryAxis, VictoryTheme, VictoryScatter, VictoryLabel, VictoryPortal, VictoryTooltip, VictoryLegend } from 'victory';
 import {myStates} from './AnalyticsStates'
+import withAuth from './hocs/withAuth'
 
 
 class Analytics extends React.Component {
@@ -145,12 +146,8 @@ class Analytics extends React.Component {
     // }
   // }
 
-
-
-  render(){
-    console.log(this.props.businesses);
+  hasBusinesses = () => {
     return (
-      <React.Fragment>
       <Container>
         <Button.Group >
           <Button onClick={this.flipGraphBiz} active={this.state.bizButtonActive}>Business Spending    <Icon name="building outline"/><Icon name="dollar"/></Button>
@@ -163,7 +160,7 @@ class Analytics extends React.Component {
 
 
           <VictoryLegend x={315} y={15}
-          	title={this.state.legendTitle}
+            title={this.state.legendTitle}
             centerTitle
             orientation="horizontal"
             gutter={5}
@@ -212,6 +209,28 @@ class Analytics extends React.Component {
       </VictoryChart>
       <Button size='massive'color={this.state.buttonText === "Show Democrats" ? "blue" : "red"} onClick={this.flipParty}>{this.state.buttonText}</Button>
       </Container>
+
+    )}
+
+  noBusinesses = () => {
+    return (
+      <Container>
+        <Segment padded basic/>
+              <Message warning size="massive">
+            <Message.Header as="h1"><Icon name="bar graph"/>Unable to display Analytics.</Message.Header>
+            <p>To display Analytics, analyze more transactions to find businesses with campaign finance data.</p>
+          </Message>
+    </Container>)
+  }
+
+
+
+
+  render(){
+    console.log(this.props.businesses);
+    return (
+      <React.Fragment>
+        {this.props.businesses.length !== 0 ? this.hasBusinesses() : this.noBusinesses()}
       </React.Fragment>
     )
   }
@@ -228,4 +247,4 @@ const mapStateToProps = (state) =>{
 //        <VictoryLabel style={{fontSize: 8}} text="Size = Your Spending" x={225} y={45} textAnchor="middle"/>
 
 
-export default connect(mapStateToProps, actions)(Analytics)
+export default connect(mapStateToProps, actions)(withAuth(Analytics))

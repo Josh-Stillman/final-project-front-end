@@ -33,7 +33,7 @@ const withAuth = WrappedComponent => {
           <Redirect to="/login" />
         );
       } else {
-        return <Redirect to="/" />;
+        return <Redirect to="/login" />;
       }
     }
   }

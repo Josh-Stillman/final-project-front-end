@@ -25,6 +25,8 @@ export const logoutUser = () => {
 
 
 
+
+
 export const import_transactions = (transactions) => {
   return {type: "IMPORT_TRANSACTIONS", transactions: transactions}
 }
@@ -36,20 +38,20 @@ export const import_user_data = (user) => {
   return {type: "IMPORT_USER_DATA", user: user}
 }
 
-export const fetch_transactions = () => {
+export const fetch_transactions = (userId) => {
   console.log("fetch getting called");
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/matched`)
+    fetch(`http://localhost:3000/users/${userId}/matched`)
     .then(res => res.json())
     .then(json=> {
       dispatch(import_transactions(json))
     })
   }
 }
-export const fetch_businesses = () => {
+export const fetch_businesses = (userId) => {
   console.log("fetch biz getting called");
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/businesses`)
+    fetch(`http://localhost:3000/users/${userId}/businesses`)
     .then(res => res.json())
     .then(json=> {
       dispatch(import_businesses(json))
