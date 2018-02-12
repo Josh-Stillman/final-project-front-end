@@ -7,6 +7,7 @@ import TransactionsContainer from './containers/TransactionsContainer'
 import BusinessesContainer from './containers/BusinessesContainer'
 import HomePage from './HomePage'
 import Analytics from './Analytics'
+import Login from './Login'
 import { Container, Segment} from 'semantic-ui-react'
 import * as actions from './actions'
 import { connect } from 'react-redux'
@@ -30,6 +31,7 @@ class App extends Component {
         <Route path="/transactions" component={TransactionsContainer} />
         <Route path="/businesses" component={BusinessesContainer} />
         <Route path="/analytics" render={() => <Analytics />} />
+        <Route path="/login" render={() => <Login />} />
         </Switch>
         </div>
       </Router>

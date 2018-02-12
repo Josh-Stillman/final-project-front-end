@@ -3,6 +3,7 @@ import Transaction from '../components/Transaction'
 import { Table, Header, Icon, Segment, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import withAuth from '../hocs/withAuth'
 
 
 
@@ -90,4 +91,4 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps, actions)(TransactionsContainer);
+export default connect(mapStateToProps, actions)(withAuth(TransactionsContainer));

@@ -3,6 +3,7 @@ import Business from '../components/Business'
 import { Table, Header, Icon, Segment, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import withAuth from '../hocs/withAuth'
 
 
 
@@ -60,4 +61,4 @@ const mapStateToProps = (state) =>{
   }
 }
 
-export default connect(mapStateToProps, actions)(BusinessesContainer);
+export default connect(mapStateToProps, actions)(withAuth(BusinessesContainer));
