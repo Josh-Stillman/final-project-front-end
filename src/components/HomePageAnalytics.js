@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Header, Icon, Grid, Segment, Button, List, Container, Divider, Image } from 'semantic-ui-react'
+import { VictoryVoronoiContainer, VictoryChart, VictoryAxis, VictoryTheme, VictoryScatter, VictoryLabel, VictoryPortal, VictoryTooltip, VictoryLegend, VictoryGroup, VictoryBar } from 'victory';
 
 const HomePageAnalytics = (props) => {
 
@@ -34,9 +35,26 @@ const HomePageAnalytics = (props) => {
         They've given {props.myNums.totalDemSpending} to Democrats (2016-2018 cycles).
       </Header.Content>
     </Header>
+
     </Segment>
   )
 
 }
 
 export default HomePageAnalytics
+
+// 
+//     <VictoryChart height={200} width={200}>
+//   <VictoryGroup
+//   offset={20}
+//     colorScale={"qualitative"}
+//   >
+//   <VictoryBar
+//     data={[{ x: 1, y: props.myNums.yourRepSpending}, { x: 2, y: props.myNums.totalRepSpending}]}
+//   />
+//     <VictoryBar
+//       data={[{ x: 1, y: props.myNums.yourDemSpending}, { x: 2, y: props.myNums.totalDemSpending}]}
+//     />
+//
+//   </VictoryGroup>
+// </VictoryChart>

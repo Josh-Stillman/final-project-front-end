@@ -6,6 +6,7 @@ import * as helpers from '../Helpers'
 import {Link} from 'react-router-dom'
 import HomePageAnalytics from '../components/HomePageAnalytics'
 import HomePageTransactions from '../components/HomePageTransactions'
+import HomePageInfo from '../components/HomePageInfo'
 
 class HomePage extends React.Component {
 
@@ -60,7 +61,7 @@ class HomePage extends React.Component {
 
 
 render(){
-  console.log("biz data on home page", this.props.businesses);
+  console.log("user data on home page", this.props.userData);
 
   let myNums = this.getNums()
   return (
@@ -74,7 +75,7 @@ render(){
     </Header>
   </Segment>
 
-  {this.props.user.id && this.props.businesses.length !== 0 ? <HomePageAnalytics myNums={myNums} / > : null}
+  {this.props.user.id && this.props.businesses.length !== 0 ? <HomePageAnalytics myNums={myNums} / > : <HomePageInfo />}
   {this.props.user.id ? <HomePageTransactions userData={this.props.userData} / > : null}
 
 

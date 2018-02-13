@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from './actions';
-import {Container, Header} from 'semantic-ui-react'
+import {Container, Header, Message, Form} from 'semantic-ui-react'
 import withAuth from './hocs/withAuth'
 
 class Login extends React.Component {
@@ -34,6 +34,7 @@ class Login extends React.Component {
   }
 
   render() {
+    console.log("user is", this.props.user);
     const { fields } = this.state;
     return (
       <div>
@@ -41,7 +42,7 @@ class Login extends React.Component {
       <Header as="h1">Login</Header>
         {this.state.error ? <h1>Try Again</h1> : null}
         <div className="ui form">
-          <form onSubmit={this.handleSubmit}>
+          <Form warning={this.props.user.error} onSubmit={this.handleSubmit}>
             <div className="ui field">
               <label>Username</label>
               <input
@@ -64,7 +65,12 @@ class Login extends React.Component {
             <button type="submit" className="ui basic green button">
               Login
             </button>
-          </form>
+            <Message
+            warning
+            header='Error'
+            content={this.props.user.error}
+        />
+          </Form>
         </div>
         </Container>
         <h1>{this.props.loggedIn ? <div>You are logged in, {this.props.username} with id of {this.props.userId}<button onClick={this.logOut}>log out</button></div> : "You are not logged in"}</h1>
@@ -76,6 +82,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => ({
   loggedIn: !!state.auth.currentUser.id,
+  user: state.auth.currentUser,
   username: state.auth.currentUser.username,
   userId: state.auth.currentUser.id
 });
