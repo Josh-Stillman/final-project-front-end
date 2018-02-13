@@ -6,8 +6,8 @@ const HomePageInfo = (props) => {
 
   return (
     <Segment vertical padded="very" size="large">
-    <Header as="h1" textAlign="center">
-      Helping you uncover the political spending of the businesses you shop at.
+    <Header as="h1" textAlign="center" style={{fontSize: 30, fontFamily: "Inconsolata, monospace"}}>
+      Uncover the political spending of the businesses you shop at
     </Header>
     <br/>
       <Container textAlign="center">

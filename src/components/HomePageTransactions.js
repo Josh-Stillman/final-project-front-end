@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Header, Icon, Grid, Segment, Button, List, Container, Divider, Image } from 'semantic-ui-react'
 import * as helpers from '../Helpers'
+import * as actions from '../actions'
 
 class HomePageTransactions extends React.Component {
 
@@ -16,7 +17,11 @@ class HomePageTransactions extends React.Component {
       fetch(`http://localhost:3000/users/${this.props.userData.id}/load_new_month`)
       .then(res => res.json())
       .then(json=> {console.log("done loading month", json)})
-      .then(json => this.setState({loading: !this.state.loading}))
+      .then(json => {
+        this.props.fetch_user_data(this.props.user.id)
+        this.props.fetch_transactions(this.props.user.id)
+        this.props.fetch_businesses(this.props.user.id)
+        this.setState({loading: !this.state.loading})})
       })
 
 
@@ -36,7 +41,7 @@ class HomePageTransactions extends React.Component {
           </p> : null}
           <Header as='h3' style={{ fontSize: '2em' }}>Analyze More Transactions!</Header>
           <p style={{ fontSize: '1.33em' }}>
-            There are still {this.props.userData.remaining_months_to_analyze} months of loaded data to analyze.  The next month to analyze is {this.props.userData.next_month_to_analyze}.
+            {this.props.userData.remaining_months_to_analyze > 0 ? `There are still ${this.props.userData.remaining_months_to_analyze} months of loaded data to analyze.  The next month to analyze is ${this.props.userData.next_month_to_analyze}.` : "There are no more months to analyze!"}
           </p>
         </Grid.Column>
         <Grid.Column floated='right' width={6}>
@@ -45,7 +50,7 @@ class HomePageTransactions extends React.Component {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
-          <Button size='massive' loading={this.state.loading} disabled={this.state.loading} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
+          <Button size='massive' loading={this.state.loading} disabled={this.state.loading || this.props.userData.remaining_months_to_analyze === 0} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from './actions';
-import {Container, Header, Message, Form} from 'semantic-ui-react'
+import {Container, Header, Message, Form, Button} from 'semantic-ui-react'
 import withAuth from './hocs/withAuth'
 
 class Login extends React.Component {
@@ -37,45 +37,22 @@ class Login extends React.Component {
     console.log("user is", this.props.user);
     const { fields } = this.state;
     return (
-      <div>
+
       <Container>
       <Header as="h1">Login</Header>
         {this.state.error ? <h1>Try Again</h1> : null}
-        <div className="ui form">
-          <Form warning={this.props.user.error} onSubmit={this.handleSubmit}>
-            <div className="ui field">
-              <label>Username</label>
-              <input
-                name="username"
-                placeholder="username"
-                value={fields.username}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="ui field">
-              <label>Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="password"
-                value={fields.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <button type="submit" className="ui basic green button">
-              Login
-            </button>
-            <Message
-            warning
-            header='Error'
-            content={this.props.user.error}
-        />
-          </Form>
-        </div>
-        </Container>
-        <h1>{this.props.loggedIn ? <div>You are logged in, {this.props.username} with id of {this.props.userId}<button onClick={this.logOut}>log out</button></div> : "You are not logged in"}</h1>
 
-      </div>
+          <Form warning={this.props.user.error} onSubmit={this.handleSubmit}>
+          <Form.Input label='User Name' name="username" placeholder='username' value={fields.username} onChange={this.handleChange} />
+          <Form.Input label='Password' name="password" type="password" placeholder="password" value={fields.password} onChange={this.handleChange} />
+          <Button type="submit">Login</Button>
+          <Message warning header='Error' content={this.props.user.error}/>
+          </Form>
+
+        </Container>
+
+
+
     );
   }
 }
@@ -88,3 +65,5 @@ const mapStateToProps = state => ({
 });
 
 export default withRouter(connect(mapStateToProps, actions)(Login));
+
+        // <h1>{this.props.loggedIn ? <div>You are logged in, {this.props.username} with id of {this.props.userId}<button onClick={this.logOut}>log out</button></div> : "You are not logged in"}</h1>

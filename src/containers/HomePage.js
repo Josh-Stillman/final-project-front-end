@@ -81,7 +81,7 @@ render(){
   </Segment>
 
   {this.props.user.id && this.props.businesses.length !== 0 ? <HomePageAnalytics myNums={myNums} / > : <HomePageInfo />}
-  {this.props.user.id ? <HomePageTransactions userData={this.props.userData} / > : null}
+  {this.props.user.id ? <HomePageTransactions user={this.props.user} userData={this.props.userData} / > : null}
 
 
 
@@ -151,9 +151,14 @@ render(){
         <p style={{ fontSize: '1.33em' }}>
           While some businesses consistently donate along ideological lines, others give to whichever party is in power, or split their donations evenly between Democrats and Republicans.
         </p>
-        <p style={{ fontSize: '1.33em' }}>
+
+        <Header as='p' >
+          <Icon name='book' />
+          <Header.Content as="p">
           Learn the basics in OpenSecrets.org's <a href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">"The Top 10 Things Every Voter Should Know About Money-In-Politics"</a>.
-        </p>
+          </Header.Content>
+        </Header>
+          
         <Button as='a' size='large' href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Learn The Facts About Campaign Finance In The U.S.</Button>
         <Divider
           as='h4'
