@@ -12,7 +12,14 @@ class HomePageTransactions extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({loading: !this.state.loading})
+    this.setState({loading: !this.state.loading}, () => {
+      fetch(`http://localhost:3000/users/${this.props.userData.id}/load_new_month`)
+      .then(res => res.json())
+      .then(json=> {console.log("done loading month", json)})
+      .then(json => this.setState({loading: !this.state.loading}))
+      })
+
+
   }
 
 
@@ -38,7 +45,7 @@ class HomePageTransactions extends React.Component {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
-          <Button size='massive' loading={this.state.loading} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
+          <Button size='massive' loading={this.state.loading} disabled={this.state.loading} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>

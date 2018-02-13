@@ -24,12 +24,16 @@ class HomePage extends React.Component {
       this.props.fetch_transactions(this.props.user.id)
       this.props.fetch_businesses(this.props.user.id)
       console.log("hp mounting", !!this.props.user.id);
+    } else if (localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
+          this.props.refreshUser()
+      }
     }
 
-  }
+
 
   handleClick = () => {
     this.setState({loading: !this.state.loading})
+
   }
 
 
@@ -41,6 +45,7 @@ class HomePage extends React.Component {
       totalRepSpending: "",
       totalDemSpending: ""
     }
+    console.log("in get nums", this.props);
     if (this.props.businesses != []) {
       let myOrgs = {
         repOrgs: this.props.businesses.filter(biz => biz.total_rep_pct > .5),

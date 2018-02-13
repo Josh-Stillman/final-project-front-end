@@ -20,7 +20,34 @@ class App extends Component {
     // this.props.fetch_businesses()
     // this.props.fetch_user_data(this.props.user.id)
     // console.log("app mounting", this.props.user.id);
+    if (localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
+        this.props.refreshUser()
+    }
+    // if (!!this.props.user.id) {
+    //   this.props.fetch_user_data(this.props.user.id)
+    //   this.props.fetch_transactions(this.props.user.id)
+    //   this.props.fetch_businesses(this.props.user.id)
+    //   console.log("hp mounting", !!this.props.user.id);
+    // }
+
   }
+  componentWillReceiveProps(nextProps){
+    if (!this.props.user.id && !!nextProps.user.id) {
+      this.props.fetch_user_data(nextProps.user.id)
+      this.props.fetch_transactions(nextProps.user.id)
+      this.props.fetch_businesses(nextProps.user.id)
+      console.log("hp mounting", !!nextProps.user.id);
+    }
+  }
+
+  // componentWillReceiveProps(nextProps){
+  //   if (!!this.props.user.id) {
+  //     this.props.fetch_user_data(this.props.user.id)
+  //     this.props.fetch_transactions(this.props.user.id)
+  //     this.props.fetch_businesses(this.props.user.id)
+  //     console.log("hp mounting", !!this.props.user.id);
+  //   }
+  // }
 
   render() {
     return (
@@ -28,7 +55,7 @@ class App extends Component {
         <div>
         <NavBar />
         <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" render={() => <HomePage/>} />
         <Route path="/transactions" component={TransactionsContainer} />
         <Route path="/businesses" component={BusinessesContainer} />
         <Route path="/analytics" render={() => <Analytics />} />

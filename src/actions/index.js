@@ -1,5 +1,11 @@
 import {adapter} from '../services'
 
+export const refreshUser = () => dispatch => {
+
+  adapter.auth.getCurrentUser().then(user => {
+    dispatch({ type: 'SET_CURRENT_USER', user }); console.log("in refresh", user);fetch_user_data(user.id); fetch_transactions(user.id), fetch_businesses(user.id)})
+};
+
 export const fetchUser = () => dispatch => {
   dispatch({ type: 'ASYNC_START' });
   adapter.auth.getCurrentUser().then(user => {
@@ -13,18 +19,28 @@ export const loginUser = (username, password, history) => dispatch => {
   adapter.auth.login({ username, password }).then(user => {
     localStorage.setItem('token', user.jwt);
     dispatch({ type: 'SET_CURRENT_USER', user });
+    // fetch_user_data(user.id);
+    // fetch_transactions(user.id);
+    // fetch_businesses(user.id);
     console.log(user);
-    //history.push('/');
+    history.push('/');
   });
 };
 
-export const logoutUser = () => {
+export const logoutUser = (history) => {
+  console.log("history in log out", history);
   localStorage.removeItem('token');
+  history.push('/');
   return { type: 'LOGOUT_USER' };
+
 };
 
 
-
+// export const getMonth = (date, userId) => dispatch => {
+//   adapter.auth.getCurrentUser().then(user => {
+//     dispatch({ type: 'SET_CURRENT_USER', user });
+//   });
+// };
 
 
 export const import_transactions = (transactions) => {
@@ -39,7 +55,7 @@ export const import_user_data = (user) => {
 }
 
 export const fetch_transactions = (userId) => {
-  console.log("fetch getting called");
+  console.log("fetch T's getting called with User ID of", userId);
   return (dispatch) => {
     fetch(`http://localhost:3000/users/${userId}/matched`)
     .then(res => res.json())
@@ -49,7 +65,7 @@ export const fetch_transactions = (userId) => {
   }
 }
 export const fetch_businesses = (userId) => {
-  console.log("fetch biz getting called");
+  console.log("fetch biz getting called with User ID of", userId);
   return (dispatch) => {
     fetch(`http://localhost:3000/users/${userId}/businesses`)
     .then(res => res.json())
@@ -60,7 +76,7 @@ export const fetch_businesses = (userId) => {
 }
 
 export const fetch_user_data = (user_id) => {
-  console.log("fetch biz getting called");
+  console.log("fetch user_data getting called with user_id of", user_id);
   return (dispatch) => {
     fetch(`http://localhost:3000/users/${user_id}`)
     .then(res => res.json())
