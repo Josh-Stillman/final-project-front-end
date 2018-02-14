@@ -43,7 +43,7 @@ const HomePageAnalytics = (props) => {
 
 export default HomePageAnalytics
 
-// 
+//
 //     <VictoryChart height={200} width={200}>
 //   <VictoryGroup
 //   offset={20}
