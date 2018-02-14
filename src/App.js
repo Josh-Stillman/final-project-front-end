@@ -29,8 +29,10 @@ class App extends Component {
     //   this.props.fetch_businesses(this.props.user.id)
     //   console.log("hp mounting", !!this.props.user.id);
     // }
+    console.log("app mounting");
 
   }
+
   componentWillReceiveProps(nextProps){
     if (!this.props.user.id && !!nextProps.user.id) {
       this.props.fetch_user_data(nextProps.user.id)
@@ -54,21 +56,20 @@ class App extends Component {
       <Router>
         <div>
         <NavBar />
-        <Switch>
         <Route exact path="/" render={() => <HomePage/>} />
         <Route path="/transactions" component={TransactionsContainer} />
         <Route path="/businesses" component={BusinessesContainer} />
         <Route path="/analytics" render={() => <Analytics />} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/signup" render={() => <SignUp />} />
-        </Switch>
         </div>
       </Router>
+
     )
   }
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
   return {
     transactions: state.transactions.all,
     user: state.auth.currentUser

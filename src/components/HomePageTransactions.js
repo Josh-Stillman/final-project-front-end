@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Header, Icon, Grid, Segment, Button, List, Container, Divider, Image } from 'semantic-ui-react'
 import * as helpers from '../Helpers'
 import * as actions from '../actions'
+import {connect} from 'react-redux'
 
 class HomePageTransactions extends React.Component {
 
@@ -13,7 +14,8 @@ class HomePageTransactions extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({loading: !this.state.loading}, () => {
+    //this.setState({loading: !this.state.loading}, () => {
+      this.props.toggle_load_transactions()
       fetch(`http://localhost:3000/users/${this.props.userData.id}/load_new_month`)
       .then(res => res.json())
       .then(json=> {console.log("done loading month", json)})
@@ -21,11 +23,12 @@ class HomePageTransactions extends React.Component {
         this.props.fetch_user_data(this.props.user.id)
         this.props.fetch_transactions(this.props.user.id)
         this.props.fetch_businesses(this.props.user.id)
-        this.setState({loading: !this.state.loading})})
-      })
+        this.props.toggle_load_transactions()})
+        //setState({loading: !this.state.loading})})
+      }
 
 
-  }
+
 
 
   render(){
@@ -50,7 +53,7 @@ class HomePageTransactions extends React.Component {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column textAlign='center'>
-          <Button size='massive' loading={this.state.loading} disabled={this.state.loading || this.props.userData.remaining_months_to_analyze === 0} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
+          <Button size='massive' loading={this.props.loading} disabled={this.props.loading || this.props.userData.remaining_months_to_analyze === 0} onClick={this.handleClick} primary><Icon name='calendar' />Analyze another month's transactions</Button>
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -59,4 +62,10 @@ class HomePageTransactions extends React.Component {
 }
 }
 
-export default HomePageTransactions
+const mapStateToProps = (state) =>{
+  return {
+    loading: state.user.loading
+  }
+}
+
+export default connect(mapStateToProps, actions)(HomePageTransactions)

@@ -46,6 +46,9 @@ export const logoutUser = (history) => {
 export const import_transactions = (transactions) => {
   return {type: "IMPORT_TRANSACTIONS", transactions: transactions}
 }
+export const toggle_load_transactions = () => {
+  return {type: "LOADING_TRANSACTION_TOGGLE"}
+}
 export const import_businesses = (businesses) => {
   return {type: "IMPORT_BUSINESSES", businesses: businesses}
 }

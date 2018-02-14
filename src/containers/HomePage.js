@@ -19,6 +19,7 @@ class HomePage extends React.Component {
   }
 
   componentDidMount(){
+    console.log("home page is mounting");
     if (!!this.props.user.id) {
       this.props.fetch_user_data(this.props.user.id)
       this.props.fetch_transactions(this.props.user.id)
@@ -158,7 +159,7 @@ render(){
           Learn the basics in OpenSecrets.org's <a href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">"The Top 10 Things Every Voter Should Know About Money-In-Politics"</a>.
           </Header.Content>
         </Header>
-          
+
         <Button as='a' size='large' href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Learn The Facts About Campaign Finance In The U.S.</Button>
         <Divider
           as='h4'

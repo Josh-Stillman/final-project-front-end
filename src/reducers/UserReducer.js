@@ -1,7 +1,10 @@
-const UserReducer = (state = {info: []}, action) => {
+const UserReducer = (state = {info: [], loading: false}, action) => {
   switch (action.type) {
     case "IMPORT_USER_DATA":
-      return {info: action.user}
+      return {...state, info: action.user}
+      break
+    case "LOADING_TRANSACTION_TOGGLE":
+      return {...state, loading: !state.loading}
       break
     default:
       return state
