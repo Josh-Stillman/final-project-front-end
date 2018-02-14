@@ -28,15 +28,24 @@ class HomePageTransactions extends React.Component {
       }
 
     loadCSV = (event) => {
-      event.preventDefault();
       event.persist();
+      event.preventDefault();
+
+      let data = new FormData()
+      data.append('file', event.target[0].files[0])
+
       console.log(event.target[0].files[0])
       fetch(`http://localhost:3000/users/${this.props.userData.id}/import_csv`, {
         method: 'POST',
-        headers:
-          {'Accepts': 'application/json'},
-        body: {file: event.target[0].files[0]}
-      }).then(res => res.json());
+        // headers: {
+        //   'Content-Type': 'text/csv',
+        //   Accepts: 'application/json'
+        // },
+        body: data
+      })
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .then(asdf => this.props.fetch_user_data(this.props.userData.id));
     }
 
     userHasTransactions = () => {
@@ -71,9 +80,11 @@ class HomePageTransactions extends React.Component {
       return(
       <Grid container stackable verticalAlign='middle'>
       <Grid.Row>
-        <Grid.Column width={8}>
-          <Header as='h3' style={{ fontSize: '2em' }}>Hello, {this.props.userData.name}. You haven't uploaded any transactions from your Mint account yet. </Header>
-          <p>Export a .CSV file from your mint account and upload it here to get started. </p>
+        <Grid.Column width={3}>
+        </Grid.Column>
+        <Grid.Column width={7}>
+          <Header as='h3' style={{ fontSize: '2em' }}>Hello, {this.props.userData.name}.<br/><br/> You haven't uploaded any transactions yet. </Header>
+          <p><a href="https://help.mint.com/Accounts-and-Transactions/888960591/How-do-you-export-transaction-data.htm" target="blank">Export a .CSV file from your Mint account</a> and upload it here to get started. </p>
         </Grid.Column>
         <Grid.Column floated='right' width={6}>
           <Icon name="credit card alternative" size="massive"/>
@@ -82,13 +93,16 @@ class HomePageTransactions extends React.Component {
       </Grid.Row>
       <Grid.Row>
       <Grid.Column textAlign='center'>
+        <Container text>
         <Form onSubmit={(event) => this.loadCSV(event)}>
         <Form.Input size="huge" type="file" /> <br/>
-        <Button size='massive' primary type="submit"><Icon name='calendar' />Load CSV of Tranactions from Mint</Button>
+        <Button size='massive' primary type="submit"><Icon name='grid layout' />Load CSV of Tranactions from Mint</Button>
         </Form>
+        </Container>
       </Grid.Column>
       </Grid.Row>
-      </Grid>)
+      </Grid>
+    )
     }
 
 
@@ -98,7 +112,7 @@ class HomePageTransactions extends React.Component {
   return (
     <Segment padded="very" vertical>
 
-    {this.props.userData.months_analyzed ? this.userHasTransactions() : this.userHasNoTransaction()}
+    {this.props.userData.oldest_transaction_month ? this.userHasTransactions() : this.userHasNoTransaction()}
 
   </Segment>
   )

@@ -11,13 +11,16 @@ const HomePageInfo = (props) => {
     </Header>
     <br/>
       <Container textAlign="center">
-       <Icon name='user outline' size="massive"/>
-       <Icon name='arrow right' size="massive"/>
-        <Icon name='credit card alternative' size="massive"/>
-        <Icon name='arrow right' size="massive"/>
-        <Icon name='building outline' size="massive"/>
-        <Icon name='arrow right' size="massive"/>
-        <Icon name='flag' size="massive" />
+       <Icon color="grey" name='user outline' size="massive"/>
+       <Icon color="grey" name='arrow right' size="huge"/>
+        <Icon color="grey" name='credit card alternative' size="massive"/>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <Icon color="grey" name='arrow right' size="huge"/>
+        <Icon color="grey" name='building outline' size="massive"/>
+        <Icon color="grey" name='arrow right' size="huge"/>
+        <Icon color="grey" name='dollar' size="massive"/>
+        <Icon color="grey" name='arrow right' size="huge"/>
+        <Icon color="grey" name='flag' size="massive" />
 
     </Container>
 

@@ -148,7 +148,7 @@ render(){
         >
           <span>Campaign Finance 101</span>
         </Divider>
-        <Header as='h3' style={{ fontSize: '2em' }}>Money Follows Power</Header>
+        <Header as='h3' style={{ fontSize: '2em' }} textAlign='center'>Money Follows Power</Header>
         <p style={{ fontSize: '1.33em' }}>
           While some businesses consistently donate along ideological lines, others give to whichever party is in power, or split their donations evenly between Democrats and Republicans.
         </p>
@@ -156,11 +156,11 @@ render(){
         <Header as='p' >
           <Icon name='book' />
           <Header.Content as="p">
-          Learn the basics in OpenSecrets.org's <a href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">"The Top 10 Things Every Voter Should Know About Money-In-Politics"</a>.
+          Learn the basics in OpenSecrets.org's <a href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Campaign Finance Primer</a>.
           </Header.Content>
         </Header>
 
-        <Button as='a' size='large' href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Learn The Facts About Campaign Finance In The U.S.</Button>
+        <Button as='a' size='large' href="https://www.opensecrets.org/resources/dollarocracy/" target="blank">Learn About Campaign Finance</Button>
         <Divider
           as='h4'
           className='header'
