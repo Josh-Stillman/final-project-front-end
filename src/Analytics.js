@@ -3,7 +3,7 @@ import { Table, Header, Icon, Button, Container, Segment, Message } from 'semant
 import { connect } from 'react-redux'
 import * as actions from './actions'
 import * as helpers from './Helpers'
-import { VictoryVoronoiContainer, VictoryChart, VictoryAxis, VictoryTheme, VictoryScatter, VictoryLabel, VictoryPortal, VictoryTooltip, VictoryLegend } from 'victory';
+import { createContainer, VictoryZoomContainer, VictoryVoronoiContainer, VictoryChart, VictoryAxis, VictoryTheme, VictoryScatter, VictoryLabel, VictoryPortal, VictoryTooltip, VictoryLegend } from 'victory';
 import {myStates} from './AnalyticsStates'
 import withAuth from './hocs/withAuth'
 
@@ -146,15 +146,18 @@ class Analytics extends React.Component {
     // }
   // }
 
+
   hasBusinesses = () => {
+    const VictoryZoomVoronoiContainer = createContainer("voronoi", "zoom");
     return (
       <Container>
         <Button.Group >
           <Button onClick={this.flipGraphBiz} active={this.state.bizButtonActive}>Business Spending    <Icon name="building outline"/><Icon name="dollar"/></Button>
           <Button onClick={this.flipGraphUser} active={!this.state.bizButtonActive}>User Spending     <Icon name="user outline"/><Icon name="dollar"/></Button>
         </Button.Group>
-      <VictoryChart domainPadding={10} containerComponent={<VictoryVoronoiContainer
-        voronoiPadding={5} radius={25} labels={this.state.tooltip} labelComponent={<VictoryTooltip width="115" style={{fontSize: 8}}/>} renderInPortal="false"
+
+      <VictoryChart domainPadding={10} containerComponent={<VictoryZoomContainer animate={{ duration: 1000, delay: 0}}
+         voronoiPadding={5} radius={25} renderInPortal="false"
         />}>
         <VictoryLabel text={this.state.title} x={225} y={30} textAnchor="middle"/>
 
@@ -188,7 +191,7 @@ class Analytics extends React.Component {
           tickFormat={(x) => (`${x * 100}%`)}
         />
 
-      <VictoryScatter
+      <VictoryScatter labels={this.state.tooltip} labelComponent={<VictoryTooltip width="115" style={{fontSize: 8}}/>}
         animate={{ duration: 1000, delay: 0}}
       style={{
         data: {
@@ -199,7 +202,10 @@ class Analytics extends React.Component {
           } else {
             return "#ee7600"
           }
-        }
+        },
+         fillOpacity: .7,
+         strokeWidth: 3
+
       }}}
 
         bubbleProperty={this.state.bubbleSize}
