@@ -41,7 +41,7 @@ class BusinessesContainer extends React.Component {
         </Table.Header>
 
         <Table.Body>
-          {this.props.businesses.map(business => <Business business={business} />)}
+          {this.props.businesses.map(business => <Business business={business} set_business={this.props.set_business} />)}
         </Table.Body>
         </Table>
       </Container>

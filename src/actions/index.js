@@ -95,3 +95,6 @@ export const sort_transactions = (clickedColumn) => {
 export const sort_businesses = (clickedColumn) => {
   return {type: "SORT_BUSINESSES", clickedColumn}
 }
+export const set_business = (business) => {
+  return {type: "SET_BUSINESS", business}
+}

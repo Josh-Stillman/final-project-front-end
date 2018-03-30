@@ -98,9 +98,9 @@ render(){
           </Grid.Column>
 
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>Learn about the <Link to="/transactions">Businesses</Link> you shop at</Header>
+            <Header as='h3' style={{ fontSize: '2em' }}>Learn about the <Link to="/businesses">Businesses</Link> you shop at</Header>
             <p style={{ fontSize: '1.33em' }}>
-              <Link to="/transactions"><Icon name="building outline" size="massive" /></Link>
+              <Link to="/businesses"><Icon name="building outline" size="massive" /></Link>
               </p>
           </Grid.Column>
         </Grid.Row>

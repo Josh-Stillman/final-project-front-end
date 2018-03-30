@@ -7,6 +7,7 @@ import TransactionsContainer from './containers/TransactionsContainer'
 import BusinessesContainer from './containers/BusinessesContainer'
 import HomePage from './containers/HomePage'
 import Analytics from './Analytics'
+import Details from './containers/Details'
 import Login from './Login'
 import SignUp from './SignUp'
 import { Container, Segment} from 'semantic-ui-react'
@@ -60,6 +61,7 @@ class App extends Component {
         <Route path="/transactions" component={TransactionsContainer} />
         <Route path="/businesses" component={BusinessesContainer} />
         <Route path="/analytics" render={() => <Analytics />} />
+        <Route path="/details" render={() => <Details />} />
         <Route path="/login" render={() => <Login />} />
         <Route path="/signup" render={() => <SignUp />} />
         </div>

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import Details from '../containers/Details'
 
 const Business = (props) => {
 
@@ -24,7 +26,7 @@ const Business = (props) => {
 
   return (
     <Table.Row>
-      <Table.Cell><a href={`https://www.opensecrets.org/orgs/totals.php?id=${props.business.org_id}`} target="blank">{props.business.name}</a></Table.Cell>
+      <Table.Cell><Link to="/details" onClick={() => props.set_business(props.business)}>{props.business.name}</Link></Table.Cell>
       <Table.Cell>{intFormatter.format(props.business.total_dem)}</Table.Cell>
       <Table.Cell>{intFormatter.format(props.business.total_rep)}</Table.Cell>
       <Table.Cell>{pctFormatter(props.business.total_dem_pct)}</Table.Cell>
