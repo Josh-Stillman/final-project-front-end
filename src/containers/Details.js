@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import withAuth from '../hocs/withAuth'
 import TransactionWithDescription from '../components/TransactionWithDescription'
+import { withRouter } from 'react-router-dom'
 
 class Details extends React.Component{
 
@@ -37,14 +38,36 @@ class Details extends React.Component{
 
   handleNewBiz = () => {
     alert(`{old: ${this.props.business.org_id}, new: ${this.state.url.match(/D\d{9}\b/)[0]}}`)
+
     //alert({old: this.props.business.org_id, new: this.state.url.match(/D\d{9}\b/)[0]})
 
   }
 
 
   handleNoBiz = () => {
-    alert(`{old: ${this.props.business.org_id}, new: 1}`)
-  }
+    alert(`{old: ${this.props.business.org_id}, new: 1}, userData: ${this.props.userData}`)
+    let payload = {old: this.props.business.org_id, new: 1}
+      //let data = JSON.stringify(payload)
+        fetch(`http://localhost:3000/users/${this.props.userData.id}/recategorize`,
+          {method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(json => {alert(json)})
+        .then(json => {
+          //this.props.fetch_user_data(this.props.user.id)
+          this.props.fetch_transactions(this.props.user.id)
+          this.props.fetch_businesses(this.props.user.id)
+          this.props.history.push('/')
+        })
+          //setState({loading: !this.state.loading})})
+        }
+
+
 
 
 
@@ -154,8 +177,10 @@ class Details extends React.Component{
 const mapStateToProps = (state) =>{
   return {
     business: state.details.business,
-    transactions: state.transactions.all.filter((t) => t.business.org_id === state.details.business.org_id)
+    transactions: state.transactions.all.filter((t) => t.business.org_id === state.details.business.org_id),
+    userData: state.user.info,
+    user: state.auth.currentUser,
   }
 }
 
-export default connect(mapStateToProps, actions)(withAuth(Details));
+export default connect(mapStateToProps, actions)(withAuth(withRouter(Details)));
