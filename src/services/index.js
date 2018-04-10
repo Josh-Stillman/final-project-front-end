@@ -1,4 +1,6 @@
-const API_ROOT = `http://localhost:3000`;
+//const API_ROOT = `http://localhost:3000`;
+import {API_ROOT} from '../api-config'
+
 
 const headers = {
   'Content-Type': 'application/json',

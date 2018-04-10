@@ -3,6 +3,7 @@ import { Form, Input, Table, Header, Icon, Grid, Segment, Button, List, Containe
 import * as helpers from '../Helpers'
 import * as actions from '../actions'
 import {connect} from 'react-redux'
+import {API_ROOT} from '../api-config'
 
 class HomePageTransactions extends React.Component {
 
@@ -16,7 +17,7 @@ class HomePageTransactions extends React.Component {
   handleClick = () => {
     //this.setState({loading: !this.state.loading}, () => {
       this.props.toggle_load_transactions()
-      fetch(`http://localhost:3000/users/${this.props.userData.id}/load_new_month`)
+      fetch(`${API_ROOT}/users/${this.props.userData.id}/load_new_month`)
       .then(res => res.json())
       .then(json=> {console.log("done loading month", json)})
       .then(json => {
@@ -35,7 +36,7 @@ class HomePageTransactions extends React.Component {
       data.append('file', event.target[0].files[0])
 
       console.log(event.target[0].files[0])
-      fetch(`http://localhost:3000/users/${this.props.userData.id}/import_csv`, {
+      fetch(`${API_ROOT}/users/${this.props.userData.id}/import_csv`, {
         method: 'POST',
         // headers: {
         //   'Content-Type': 'text/csv',

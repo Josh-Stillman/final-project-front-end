@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from './actions';
 import {Form, Button, Message, Container, Header} from 'semantic-ui-react'
 import withAuth from './hocs/withAuth'
+import {API_ROOT} from './api-config'
 
 class SignUp extends React.Component {
   constructor() {
@@ -36,7 +37,7 @@ class SignUp extends React.Component {
 
   signUp = (fields) => {
     console.log("in signup, fields are", fields);
-    fetch('http://localhost:3000/signup/', {
+    fetch(`${API_ROOT}/signup/`, {
       method: 'POST',
       headers:
         {'Content-Type': 'application/json',

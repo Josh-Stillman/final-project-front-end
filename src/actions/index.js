@@ -1,4 +1,5 @@
 import {adapter} from '../services'
+import {API_ROOT} from '../api-config'
 
 export const refreshUser = () => dispatch => {
 
@@ -60,7 +61,7 @@ export const import_user_data = (user) => {
 export const fetch_transactions = (userId) => {
   console.log("fetch T's getting called with User ID of", userId);
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/${userId}/matched`)
+    fetch(`${API_ROOT}/users/${userId}/matched`)
     .then(res => res.json())
     .then(json=> {
       dispatch(import_transactions(json))
@@ -70,7 +71,7 @@ export const fetch_transactions = (userId) => {
 export const fetch_businesses = (userId) => {
   console.log("fetch biz getting called with User ID of", userId);
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/${userId}/businesses`)
+    fetch(`${API_ROOT}/users/${userId}/businesses`)
     .then(res => res.json())
     .then(json=> {
       dispatch(import_businesses(json))
@@ -81,7 +82,7 @@ export const fetch_businesses = (userId) => {
 export const fetch_user_data = (user_id) => {
   console.log("fetch user_data getting called with user_id of", user_id);
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/${user_id}`)
+    fetch(`${API_ROOT}/users/${user_id}`)
     .then(res => res.json())
     .then(json=> {
       dispatch(import_user_data(json))

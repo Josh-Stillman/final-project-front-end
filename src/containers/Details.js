@@ -5,6 +5,7 @@ import * as actions from '../actions'
 import withAuth from '../hocs/withAuth'
 import TransactionWithDescription from '../components/TransactionWithDescription'
 import { withRouter } from 'react-router-dom'
+import {API_ROOT} from '../api-config'
 
 class Details extends React.Component{
 
@@ -48,7 +49,7 @@ class Details extends React.Component{
     alert(`{old: ${this.props.business.org_id}, new: 1}, userData: ${this.props.userData}`)
     let payload = {old: this.props.business.org_id, new: 1}
       //let data = JSON.stringify(payload)
-        fetch(`http://localhost:3000/users/${this.props.userData.id}/recategorize`,
+        fetch(`${API_ROOT}/users/${this.props.userData.id}/recategorize`,
           {method: 'POST',
           headers: {
           'Content-Type': 'application/json',

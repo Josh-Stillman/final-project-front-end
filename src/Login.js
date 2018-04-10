@@ -5,6 +5,7 @@ import * as actions from './actions';
 import {Container, Header, Message, Form, Button} from 'semantic-ui-react'
 import withAuth from './hocs/withAuth'
 
+
 class Login extends React.Component {
   constructor() {
     super();
