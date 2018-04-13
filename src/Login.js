@@ -9,6 +9,7 @@ import withAuth from './hocs/withAuth'
 class Login extends React.Component {
   constructor() {
     super();
+
     this.state = {
       error: false,
       fields: {
@@ -16,6 +17,28 @@ class Login extends React.Component {
         password: ''
       }
     };
+  }
+
+  componentDidMount(){
+    console.log("location in login", this.props)
+    if(this.props.location.state && this.props.location.state.guest){
+      this.setState({fields: {username: "Demo", password: "guest"}} )
+    }
+  }
+
+  componentDidMount(){
+    console.log("location in login", this.props)
+    if(this.props.location.state && this.props.location.state.guest){
+      this.setState({fields: {username: "Demo", password: "guest"}} )
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    console.log("location in login", this.props)
+    if(nextProps.location.state && nextProps.location.state.guest){
+      this.setState({fields: {username: "Demo", password: "guest"}} )
+    } else if (nextProps.location.state && !nextProps.location.state.guest){
+      this.setState({fields: {username: "", password: ""}} )
+    }
   }
 
   handleChange = e => {

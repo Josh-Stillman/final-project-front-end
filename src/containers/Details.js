@@ -38,17 +38,15 @@ class Details extends React.Component{
   }
 
   handleNewBiz = () => {
-    alert(`{old: ${this.props.business.org_id}, new: ${this.state.url.match(/D\d{9}\b/)[0]}}`)
+    // alert(`{old: ${this.props.business.org_id}, new: ${this.state.url.match(/D\d{9}\b/)[0]}}`)
 
     //alert({old: this.props.business.org_id, new: this.state.url.match(/D\d{9}\b/)[0]})
+    //this.props.
 
-  }
+    //remove biz from state.
 
+    let payload = {old: this.props.business.org_id, new: this.state.url.match(/D\d{9}\b/)[0]}
 
-  handleNoBiz = () => {
-    alert(`{old: ${this.props.business.org_id}, new: 1}, userData: ${this.props.userData}`)
-    let payload = {old: this.props.business.org_id, new: 1}
-      //let data = JSON.stringify(payload)
         fetch(`${API_ROOT}/users/${this.props.userData.id}/recategorize`,
           {method: 'POST',
           headers: {
@@ -58,14 +56,34 @@ class Details extends React.Component{
           body: JSON.stringify(payload)
         })
         .then(res => res.json())
-        .then(json => {alert(json)})
         .then(json => {
-          //this.props.fetch_user_data(this.props.user.id)
+          this.props.fetch_user_data(this.props.user.id)
+          this.props.fetch_transactions(this.props.user.id)
+          this.props.fetch_businesses(this.props.user.id)
+          this.props.history.push('/businesses')
+        })
+  }
+
+
+  handleNoBiz = () => {
+    let payload = {old: this.props.business.org_id, new: 1}
+
+        fetch(`${API_ROOT}/users/${this.props.userData.id}/recategorize`,
+          {method: 'POST',
+          headers: {
+          'Content-Type': 'application/json',
+          'Accepts': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(json => {
+          this.props.fetch_user_data(this.props.user.id)
           this.props.fetch_transactions(this.props.user.id)
           this.props.fetch_businesses(this.props.user.id)
           this.props.history.push('/')
         })
-          //setState({loading: !this.state.loading})})
+
         }
 
 

@@ -31,7 +31,8 @@ class NavBar extends React.Component {
       <Menu >
         <Menu.Item as={Link} exact to="/" name="Home" color="grey" ><Header as="h2" style={{fontFamily: "Inconsolata, monospace"}}>Follow  <span>&#8594;</span>  your  <span>&#8594;</span>  $</Header></Menu.Item>
     <Menu.Menu position="right">
-      <Menu.Item as={NavLink} to="/login" name="Login" style={{fontSize: 16, fontFamily: "Inconsolata, monospace"}} ><Icon name="user outline" /> Login</Menu.Item>
+      <Menu.Item as={Link} to={{pathname: "/login", state: {guest: true}}} name="Demo - Login as Guest" style={{fontSize: 16, fontFamily: "Inconsolata, monospace"}} ><Icon name="user outline" /> Demo - Login as Guest</Menu.Item>
+      <Menu.Item as={NavLink} to={{pathname: "/login", state: {guest: false}}} name="Login" style={{fontSize: 16, fontFamily: "Inconsolata, monospace"}} ><Icon name="user outline" /> Login</Menu.Item>
       <Menu.Item as={NavLink} to="/signup" name="Signup" style={{fontSize: 16, fontFamily: "Inconsolata, monospace"}} ><Icon name="user add" />Sign Up</Menu.Item>
     </Menu.Menu>
     </Menu>

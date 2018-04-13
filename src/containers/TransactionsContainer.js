@@ -61,7 +61,7 @@ class TransactionsContainer extends React.Component {
       </Table.Header>
 
       <Table.Body>
-        {this.props.transactions.map(transaction => <Transaction transaction={transaction} />)}
+        {this.props.transactions.map(transaction => <Transaction transaction={transaction} set_business={this.props.set_business} />)}
       </Table.Body>
       </Table>
     </Container>)

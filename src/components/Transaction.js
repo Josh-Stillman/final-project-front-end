@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 const Transaction = (props) => {
 
@@ -27,7 +28,8 @@ const Transaction = (props) => {
       <Table.Cell>{props.transaction.date}</Table.Cell>
       <Table.Cell>{props.transaction.description}</Table.Cell>
       <Table.Cell>{floatFormatter.format(props.transaction.amount)}</Table.Cell>
-      <Table.Cell><a href={`https://www.opensecrets.org/orgs/totals.php?id=${props.transaction.business.org_id}`} target="blank">{props.transaction.business.name}</a></Table.Cell>
+      <Table.Cell>
+      <Link to="/details" onClick={() => props.set_business(props.transaction.business)}>{props.transaction.business.name}</Link></Table.Cell>
       <Table.Cell>{intFormatter.format(props.transaction.business.total_dem)}</Table.Cell>
       <Table.Cell>{intFormatter.format(props.transaction.business.total_rep)}</Table.Cell>
       <Table.Cell>{pctFormatter(props.transaction.business.total_dem_pct)}</Table.Cell>
