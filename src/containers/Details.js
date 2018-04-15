@@ -170,7 +170,8 @@ class Details extends React.Component{
             <br/><br/>
               <p><i>If you find a better match, copy and paste the URL of the organization's OpenSecrets.org page below.</i></p>
               <Input fluid defaultValue={`https://www.opensecrets.org/orgs/summary.php?id=${this.props.business.org_id}`}
-              value={this.state.url} onChange={this.handleChange} action={<Button color="blue" onClick={this.handleNewBiz} disabled={this.state.disabledSubmit}>Submit New Match</Button>}/>
+              value={this.state.url} onChange={this.handleChange} action={<Button color="blue" onClick={this.handleNewBiz} disabled={true || this.state.disabledSubmit}>Submit New Match</Button>}/>
+              <br/><p><i>Temporarily disabled.  Feature coming soon.</i></p>
             </Grid.Column>
             <Grid.Column width={1}>
             <Divider vertical>Or</Divider>
