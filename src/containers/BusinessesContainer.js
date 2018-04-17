@@ -6,7 +6,6 @@ import * as actions from '../actions'
 import withAuth from '../hocs/withAuth'
 
 
-
 class BusinessesContainer extends React.Component {
   constructor() {
     super()
@@ -52,7 +51,7 @@ class BusinessesContainer extends React.Component {
     return (
       <Container>
         <Segment padded basic/>
-              <Message warning size="massive">
+            <Message warning size="massive">
             <Message.Header as="h1"><Icon name="building outline"/>No businesses found yet.</Message.Header>
             <p>Analyze more transactions to find businesses with campaign finance data.</p>
           </Message>

@@ -6,10 +6,10 @@ const HomePageInfo = (props) => {
 
   return (
     <Segment vertical padded="very" size="large">
-    <Header as="h1" textAlign="center" style={{fontSize: 30, fontFamily: "Inconsolata, monospace"}}>
-      Uncover the political spending of the businesses you shop at
-    </Header>
-    <br/>
+      <Header as="h1" textAlign="center" style={{fontSize: 30, fontFamily: "Inconsolata, monospace"}}>
+        Uncover the political spending of the businesses you shop at
+      </Header>
+      <br/>
       <Container textAlign="center">
        <Icon color="grey" name='user outline' size="massive"/>
        <Icon color="grey" name='arrow right' size="huge"/>
@@ -21,9 +21,7 @@ const HomePageInfo = (props) => {
         <Icon color="grey" name='dollar' size="massive"/>
         <Icon color="grey" name='arrow right' size="huge"/>
         <Icon color="grey" name='flag' size="massive" />
-
-    </Container>
-
+      </Container>
     </Segment>
   )
 

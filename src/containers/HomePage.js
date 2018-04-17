@@ -10,7 +10,6 @@ import HomePageInfo from '../components/HomePageInfo'
 
 class HomePage extends React.Component {
 
-  //formatting from other pages.
   constructor() {
     super()
     this.state = {
@@ -19,7 +18,6 @@ class HomePage extends React.Component {
   }
 
   componentDidMount(){
-    console.log("home page is mounting");
     if (!!this.props.user.id) {
       this.props.fetch_user_data(this.props.user.id)
       this.props.fetch_transactions(this.props.user.id)
@@ -84,11 +82,6 @@ render(){
   {this.props.user.id && this.props.businesses.length !== 0 ? <HomePageAnalytics myNums={myNums} / > : <HomePageInfo />}
   {this.props.user.id ? <HomePageTransactions user={this.props.user} userData={this.props.userData} / > : null}
 
-
-
-
-
-
     <Segment style={{ padding: '0em' }} vertical>
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
@@ -123,10 +116,6 @@ render(){
       </Grid.Row>
     </Grid>
   </Segment>
-
-
-
-
 
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
@@ -211,10 +200,7 @@ render(){
        </Grid>
      </Container>
    </Segment>
-
-
-
-    </React.Fragment>
+  </React.Fragment>
   )
 }
 

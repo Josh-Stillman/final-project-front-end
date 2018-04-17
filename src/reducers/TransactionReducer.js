@@ -57,5 +57,3 @@ const TransactionReducer = (state = {all: [], column: "date", direction: "descen
 }
 
 export default TransactionReducer
-
-//multiple reducers?

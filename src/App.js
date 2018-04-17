@@ -17,21 +17,9 @@ import { connect } from 'react-redux'
 class App extends Component {
 
   componentDidMount(){
-    // this.props.fetch_transactions()
-    // this.props.fetch_businesses()
-    // this.props.fetch_user_data(this.props.user.id)
-    // console.log("app mounting", this.props.user.id);
     if (localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
         this.props.refreshUser()
     }
-    // if (!!this.props.user.id) {
-    //   this.props.fetch_user_data(this.props.user.id)
-    //   this.props.fetch_transactions(this.props.user.id)
-    //   this.props.fetch_businesses(this.props.user.id)
-    //   console.log("hp mounting", !!this.props.user.id);
-    // }
-    console.log("app mounting");
-
   }
 
   componentWillReceiveProps(nextProps){
@@ -39,18 +27,8 @@ class App extends Component {
       this.props.fetch_user_data(nextProps.user.id)
       this.props.fetch_transactions(nextProps.user.id)
       this.props.fetch_businesses(nextProps.user.id)
-      console.log("hp mounting", !!nextProps.user.id);
     }
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   if (!!this.props.user.id) {
-  //     this.props.fetch_user_data(this.props.user.id)
-  //     this.props.fetch_transactions(this.props.user.id)
-  //     this.props.fetch_businesses(this.props.user.id)
-  //     console.log("hp mounting", !!this.props.user.id);
-  //   }
-  // }
 
   render() {
     return (
@@ -77,11 +55,5 @@ const mapStateToProps = (state) => {
     user: state.auth.currentUser
   }
 }
-
-// const mapDispatchToProps = (dispatch) =>{
-//   return {
-//     transactions: state.transactions.all
-//   }
-// }
 
 export default connect(mapStateToProps, actions)(App);

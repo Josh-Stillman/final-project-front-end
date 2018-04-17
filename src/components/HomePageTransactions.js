@@ -109,7 +109,7 @@ class HomePageTransactions extends React.Component {
 
 
   render(){
-    console.log("homepage transactions", this.props.userData);
+
   return (
     <Segment padded="very" vertical>
 

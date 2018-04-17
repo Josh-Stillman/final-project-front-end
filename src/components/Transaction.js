@@ -21,7 +21,6 @@ const Transaction = (props) => {
 
   }
 
-
   console.log("transaction", props.transaction.business);
   return (
     <Table.Row>

@@ -61,7 +61,9 @@ class SignUp extends React.Component {
         <Header as="h1">Sign Up</Header>
         <Form.Input label='User Name' name="username" placeholder='username' value={fields.username} onChange={this.handleChange} />
         <Form.Input label='Password' name="password" type="password" placeholder="password" value={fields.password} onChange={this.handleChange} />
-        <Button type="submit">Submit</Button>
+        <Button disabled={true} type="submit">Submit</Button>
+        <br/>
+        <p><i>Full live version coming soon.  In the meantime, please login as a guest to view the demo.</i></p>
         <Message
         warning
         header='Error'
