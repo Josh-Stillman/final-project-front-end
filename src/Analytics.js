@@ -174,7 +174,5 @@ const mapStateToProps = (state) =>{
     businesses: state.businesses.all,
   }
 }
-//        <VictoryLabel style={{fontSize: 8}} text="Size = Your Spending" x={225} y={45} textAnchor="middle"/>
-
 
 export default connect(mapStateToProps, actions)(withAuth(Analytics))

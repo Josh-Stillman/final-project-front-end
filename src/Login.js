@@ -89,5 +89,3 @@ const mapStateToProps = state => ({
 });
 
 export default withRouter(connect(mapStateToProps, actions)(Login));
-
-        // <h1>{this.props.loggedIn ? <div>You are logged in, {this.props.username} with id of {this.props.userId}<button onClick={this.logOut}>log out</button></div> : "You are not logged in"}</h1>

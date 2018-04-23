@@ -26,9 +26,6 @@ class Details extends React.Component{
   handleChange = event => {
     let submittable = false
 
-    // if(/D\d{8,9}\b/.test(event.target.value) && !event.target.value.includes(this.props.business.org_id)){
-    //   submittable = true
-    // }
     console.log("changing text", !/D\d{9}\b/.test(event.target.value),  !event.target.value.includes(this.props.business.org_id), "this.state.disabled", this.state.disabledSubmit)
 
     this.setState({

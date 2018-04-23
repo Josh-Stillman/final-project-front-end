@@ -42,19 +42,3 @@ const HomePageAnalytics = (props) => {
 }
 
 export default HomePageAnalytics
-
-//
-//     <VictoryChart height={200} width={200}>
-//   <VictoryGroup
-//   offset={20}
-//     colorScale={"qualitative"}
-//   >
-//   <VictoryBar
-//     data={[{ x: 1, y: props.myNums.yourRepSpending}, { x: 2, y: props.myNums.totalRepSpending}]}
-//   />
-//     <VictoryBar
-//       data={[{ x: 1, y: props.myNums.yourDemSpending}, { x: 2, y: props.myNums.totalDemSpending}]}
-//     />
-//
-//   </VictoryGroup>
-// </VictoryChart>
