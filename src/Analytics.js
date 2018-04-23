@@ -70,29 +70,6 @@ class Analytics extends React.Component {
     }
   }
 
-    // if (this.state.x === "total_rep") {
-    //   this.setState({
-    //     tooltip: (d) => `${d.name}\n${helpers.pctFormatter(d.total_dem_pct)} to Ds\n${helpers.intFormatter.format(d.total_dem)} to Ds`,
-    //     x: "total_dem",
-    //     y: "total_dem_pct",
-    //     x_label: "Amount to Democrats (2016-2018)",
-    //     y_label: "% to Democrats",
-    //     title: "Donations to Democrats",
-    //     buttonText: "Show Republicans"
-    //   })
-    // } else {
-    //   this.setState({
-    //     tooltip: (d) => `${d.name}\n${helpers.pctFormatter(d.total_rep_pct)} to Rs\n${helpers.intFormatter.format(d.total_rep)}`,
-    //     x: "total_rep",
-    //     y: "total_rep_pct",
-    //     x_label: "Amount to Republicans (2016-2018)",
-    //     y_label: "% to Republicans",
-    //     title: "Donations to Republicans",
-    //     buttonText: "Show Democrats"
-    //   })
-    // }
-  // }
-
 
   hasBusinesses = () => {
     const VictoryZoomVoronoiContainer = createContainer("voronoi", "zoom");
